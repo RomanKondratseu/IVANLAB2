@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 public class _3ShouldRegisterTest {
   private WebDriver driver;
   private Map<String, Object> vars;
@@ -60,6 +63,9 @@ public class _3ShouldRegisterTest {
     driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
     Thread.sleep(5000);
     System.out.println(vars);
-    driver.findElement(By.cssSelector("#gigya-verification-sent-screen > div:nth-child(2) > a > input")).click();
+
+    assertThat(driver.findElement(By.cssSelector("#gigya-verification-sent-screen > div:nth-child(1) > label")).getText(),
+            is("We've sent you an email with a link to verify your account.\n" +
+                    "Please check your spam folder if you can't find this email in your inbox."));
   }
 }

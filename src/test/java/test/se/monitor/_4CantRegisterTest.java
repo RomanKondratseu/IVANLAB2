@@ -6,11 +6,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 public class _4CantRegisterTest {
   private WebDriver driver;
@@ -59,8 +62,8 @@ public class _4CantRegisterTest {
     driver.findElement(By.cssSelector(" #gigya-checkbox-62954654473991340")).click();
     driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
     Thread.sleep(5000);
-    System.out.println(vars);
-    driver.findElement(By.cssSelector("#register-site-login > div.gigya-error-display.gigya-composite-control.gigya-composite-control-form-error.gigya-error-code-400009.gigya-error-display-active > div"));
 
+    WebElement element = driver.findElement(By.cssSelector("#register-site-login > div.gigya-error-display.gigya-composite-control.gigya-composite-control-form-error.gigya-error-code-400009.gigya-error-display-active > div"));
+    assertTrue(element.isDisplayed());
   }
 }

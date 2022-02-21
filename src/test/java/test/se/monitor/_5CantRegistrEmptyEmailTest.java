@@ -6,11 +6,14 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 public class _5CantRegistrEmptyEmailTest {
     private WebDriver driver;
@@ -45,22 +48,10 @@ public class _5CantRegistrEmptyEmailTest {
         driver.manage().window().maximize();
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > input"))
-                .sendKeys("");
+                .sendKeys("jlsdaljflsd@gmail.com");
         Thread.sleep(1000);
-        driver.findElement(By.cssSelector("#names-row > div:nth-child(1) > div > input"))
-                .sendKeys("Ivan");
-        driver.findElement(By.cssSelector("#names-row > div:nth-child(2) > div > input"))
-                .sendKeys("Vorobey");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > input"))
-                .sendKeys("123456Ivan");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(2) > div > input"))
-                .sendKeys("123456Ivan");
-        driver.findElement(By.cssSelector("#subs-checkbox-cdo")).click();
-        driver.findElement(By.cssSelector(" #gigya-checkbox-62954654473991340")).click();
-        driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
-        Thread.sleep(5000);
-        System.out.println(vars);
-        driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > span"));
 
+        WebElement element = driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > span"));
+        assertTrue(element.isDisplayed());
     }
 }

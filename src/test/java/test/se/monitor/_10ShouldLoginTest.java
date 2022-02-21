@@ -12,6 +12,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 public class _10ShouldLoginTest {
     private WebDriver driver;
     private Map<String, Object> vars;
@@ -45,13 +48,15 @@ public class _10ShouldLoginTest {
         driver.manage().window().maximize();
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-textbox > input"))
-                .sendKeys("vanya3@gmail.com");
+                .sendKeys("vanya3@gmail.com");// LOGIN
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-password > input"))
-                .sendKeys("123456Ivan");
+                .sendKeys("123456Ivan"); // PASSWORD
         driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-layout-row > div:nth-child(1) > div > label > span")).click();
         driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
-        driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+        driver.switchTo().window(driver.getWindowHandles().toArray()[0].toString());
         Thread.sleep(5000);
+        assertThat(driver.findElement(By.cssSelector("#header > div > div.hfr.htr.fs14.lpr-15.lpt-2.flx-s_0.flx-g_10.pr0 > div.hdn.hdib-s > div:nth-child(1) > a > span")).getText(),
+                is("Ivan Vorobey"));
     }
 }

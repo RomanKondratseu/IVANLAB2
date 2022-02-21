@@ -15,7 +15,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class _2ShouldLeadToRightAddress {
+public class _16ShouldCheckField {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
@@ -39,9 +39,8 @@ public class _2ShouldLeadToRightAddress {
     @Test
     public void shouldBeWorkingLinks() throws InterruptedException {
         driver.get("https://dictionary.cambridge.org/");
-        driver.manage().window().setSize(new Dimension(1476, 880));
-        driver.findElement(By.linkText("Grammar")).click();
-        Thread.sleep(1000);
-        assertEquals("https://dictionary.cambridge.org/grammar/british-grammar/", driver.getCurrentUrl());
+        driver.manage().window().maximize();
+        driver.findElement(By.cssSelector("#searchword")).sendKeys("Red");
+        Thread.sleep(3000);
     }
 }

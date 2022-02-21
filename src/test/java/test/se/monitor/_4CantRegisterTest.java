@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class _3ShouldRegisterTest {
+public class _4CantRegisterTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -45,7 +45,7 @@ public class _3ShouldRegisterTest {
     driver.manage().window().maximize();
     Thread.sleep(1000);
     driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > input"))
-            .sendKeys("test+" + Math.floor(Math.random() * 11111) + "@gmail.com");
+            .sendKeys("vanya2@gmail.com");
     Thread.sleep(1000);
     driver.findElement(By.cssSelector("#names-row > div:nth-child(1) > div > input"))
             .sendKeys("Ivan");
@@ -60,6 +60,7 @@ public class _3ShouldRegisterTest {
     driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
     Thread.sleep(5000);
     System.out.println(vars);
-    driver.findElement(By.cssSelector("#gigya-verification-sent-screen > div:nth-child(2) > a > input")).click();
+    driver.findElement(By.cssSelector("#register-site-login > div.gigya-error-display.gigya-composite-control.gigya-composite-control-form-error.gigya-error-code-400009.gigya-error-display-active > div"));
+
   }
 }

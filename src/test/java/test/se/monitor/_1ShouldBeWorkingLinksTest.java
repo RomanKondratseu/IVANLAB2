@@ -38,11 +38,11 @@ public class _1ShouldBeWorkingLinksTest {
   }
 
   @Test
-  public void shouldBeWorkingLinks() {
+  public void shouldBeWorkingLinks() throws InterruptedException {
     driver.get("https://dictionary.cambridge.org/");
     driver.manage().window().setSize(new Dimension(1476, 880));
     driver.findElement(By.linkText("Grammar")).click();
-
+    Thread.sleep(3000);
     assertThat(driver.findElement(By.cssSelector(".lp-s_l-25 > .lmb-20")).getText(), is("Explore the English Grammar"));
   }
 }

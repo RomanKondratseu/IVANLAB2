@@ -42,5 +42,6 @@ public class _16ShouldCheckField {
         driver.manage().window().maximize();
         driver.findElement(By.cssSelector("#searchword")).sendKeys("Red");
         Thread.sleep(3000);
+
     }
 }

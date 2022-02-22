@@ -6,11 +6,16 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class _11CantLoginTest {
     private WebDriver driver;
@@ -51,7 +56,7 @@ public class _11CantLoginTest {
                 .sendKeys("1121223456Ivan");
         driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
         Thread.sleep(4000);
-        driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-error-display.gigya-composite-control.gigya-composite-control-form-error.gigya-error-display-active.gigya-error-code-403120 > div"));
-        Thread.sleep(4000);
+        assertThat(driver.findElement(By.cssSelector("#gigya-login-form > div.gigya-layout-row.with-divider > div.gigya-layout-cell.responsive.with-site-login > div.gigya-error-display.gigya-composite-control.gigya-composite-control-form-error.gigya-error-display-active.gigya-error-code-403042 > div")).getText(),
+                is("Invalid login or password"));
     }
 }

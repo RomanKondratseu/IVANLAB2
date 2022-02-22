@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
@@ -14,8 +15,9 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-public class _9NotificationTest {
+public class _6CantRegistrEmptyPasswordlTest {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
@@ -48,24 +50,18 @@ public class _9NotificationTest {
         driver.manage().window().maximize();
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > input"))
-                .sendKeys("                  ");
+                .sendKeys("jlsdaljflsd@gmail.com");
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#names-row > div:nth-child(1) > div > input"))
-                .sendKeys(" ");
+                .sendKeys("Ivan");
         driver.findElement(By.cssSelector("#names-row > div:nth-child(2) > div > input"))
-                .sendKeys(" ");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > input"))
-                .sendKeys("  ");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(2) > div > input"))
-                .sendKeys("  ");
-        driver.findElement(By.cssSelector("#subs-checkbox-cdo")).click();
-        driver.findElement(By.cssSelector(" #gigya-checkbox-62954654473991340")).click();
+                .sendKeys("Vorobey");
+        driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > input")).sendKeys("");
+
         driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
-        Thread.sleep(3000);
-        System.out.println(vars);
-        assertThat(driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > span")).getText(), is("Password does not meet complexity requirements"));
+        Thread.sleep(1000);
+        assertThat(driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > span")).getText(), is("This field is required"));
         Thread.sleep(2000);
-        assertThat(driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > span")).getText(), is("This field is required"));
-        Thread.sleep(2000);
+
     }
 }

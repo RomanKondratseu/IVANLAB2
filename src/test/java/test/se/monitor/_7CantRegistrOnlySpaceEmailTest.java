@@ -6,13 +6,17 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class _6ShouldOnlySpaceLoginTest {
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+public class _7CantRegistrOnlySpaceEmailTest {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
@@ -45,22 +49,11 @@ public class _6ShouldOnlySpaceLoginTest {
         driver.manage().window().maximize();
         Thread.sleep(1000);
         driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > input"))
-                .sendKeys("                  ");
+                .sendKeys("       ");
         Thread.sleep(1000);
-        driver.findElement(By.cssSelector("#names-row > div:nth-child(1) > div > input"))
-                .sendKeys("Ivan");
-        driver.findElement(By.cssSelector("#names-row > div:nth-child(2) > div > input"))
-                .sendKeys("Vorobey");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(1) > div > input"))
-                .sendKeys("123456Ivan");
-        driver.findElement(By.cssSelector("#password-row > div:nth-child(2) > div > input"))
-                .sendKeys("123456Ivan");
-        driver.findElement(By.cssSelector("#subs-checkbox-cdo")).click();
-        driver.findElement(By.cssSelector(" #gigya-checkbox-62954654473991340")).click();
         driver.findElement(By.cssSelector("#register-site-login > div.gigya-composite-control.gigya-composite-control-submit > input")).click();
-        Thread.sleep(5000);
-        System.out.println(vars);
-        driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > span"));
-
+        Thread.sleep(1000);
+        assertThat(driver.findElement(By.cssSelector("#register-site-login > div:nth-child(1) > div > div > span")).getText(), is("This field is required"));
+        Thread.sleep(2000);
     }
 }
